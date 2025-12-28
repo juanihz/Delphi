@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES & ESTÉTICA EXACTA DE LA SIMULACIÓN --- */
+        /* --- VARIABLES & ESTÉTICA EXACTA --- */
         :root {
             --bg-main: #0a0a0f; /* Negro profundo */
             --bg-surface: rgba(20, 20, 30, 0.6); /* Superficies semitransparentes */
@@ -89,15 +89,19 @@
             letter-spacing: 3px;
         }
 
-        /* SVG inline para simular el logo de "Vértice Visionario" */
-        .logo-svg {
-            width: 40px;
-            height: 40px;
-            filter: drop-shadow(0 0 8px var(--accent-cyan)); /* Resplandor general */
+        /* ESTILOS PARA TU NUEVA IMAGEN DE LOGO */
+        .logo-img {
+            width: 55px;  /* Tamaño del logo */
+            height: auto; 
+            object-fit: contain;
+            /* Si quieres darle un brillo extra por código, descomenta abajo: */
+            /* filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.4)); */
         }
-        .triangle-cyan { stroke: var(--accent-cyan); }
-        .triangle-orange { stroke: var(--accent-orange); mix-blend-mode: screen; opacity: 0.8; }
 
+        .footer-logo-img {
+            width: 45px; /* Ligeramente más pequeño en el footer */
+            opacity: 0.8;
+        }
 
         nav ul { display: flex; gap: 30px; align-items: center; }
         nav a { 
@@ -250,8 +254,6 @@
             color: var(--text-secondary);
             border-top: 1px solid rgba(255,255,255,0.08);
         }
-        .footer-logo-svg { width: 30px; height: 30px; opacity: 0.7; }
-
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
@@ -266,11 +268,7 @@
 
     <header>
         <div class="logo-container">
-            <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="triangle-cyan" d="M50 15L85 85H15L50 15Z" stroke-width="4"/>
-                <path class="triangle-orange" d="M50 25L78 80H22L50 25Z" stroke-width="4"/>
-                <circle cx="50" cy="50" r="5" fill="white" filter="drop-shadow(0 0 5px white)"/>
-            </svg>
+            <img src="logo.png" alt="DELPHI Logo" class="logo-img">
             DELPHI
         </div>
         <nav>
@@ -408,10 +406,7 @@
 
     <footer id="contact">
         <div class="logo-container" style="justify-content: center; margin-bottom: 30px; opacity: 0.8;">
-             <svg class="logo-svg footer-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="triangle-cyan" d="M50 15L85 85H15L50 15Z" stroke-width="4"/>
-                <path class="triangle-orange" d="M50 25L78 80H22L50 25Z" stroke-width="4"/>
-            </svg>
+             <img src="logo.png" alt="DELPHI Logo" class="logo-img footer-logo-img">
             DELPHI
         </div>
         <p data-lang="es" style="margin-bottom: 10px;">© 2025 DELPHI. Consultoría Estratégica. Todos los derechos reservados.</p>
