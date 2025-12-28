@@ -89,13 +89,11 @@
             letter-spacing: 3px;
         }
 
-        /* ESTILOS PARA TU NUEVA IMAGEN DE LOGO */
+        /* ESTILOS PARA TU NUEVA IMAGEN DE LOGO (Header y Footer) */
         .logo-img {
-            width: 55px;  /* Tamaño del logo */
+            width: 55px;  /* Tamaño del logo en la barra */
             height: auto; 
             object-fit: contain;
-            /* Si quieres darle un brillo extra por código, descomenta abajo: */
-            /* filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.4)); */
         }
 
         .footer-logo-img {
@@ -130,20 +128,52 @@
             color: var(--accent-cyan);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION REVISADA (Layout dividido) --- */
         .hero {
-            min-height: 90vh;
-            display: flex;
+            min-height: 100vh; /* Ocupa toda la pantalla */
+            display: flex;     /* Usamos Flexbox para dividir izquierda/derecha */
             align-items: center;
-            padding-top: 150px;
-            position: relative; /* Para posicionar el logo grande */
-            overflow: hidden; /* Para que el logo grande no desborde */
+            justify-content: space-between; /* Separa texto y logo */
+            padding-top: 100px; /* Compensar header */
+            gap: 50px; /* Espacio entre texto y logo */
         }
 
-        .hero-content { flex: 1; max-width: 650px; z-index: 2; }
+        /* Columna Izquierda: Texto */
+        .hero-content { 
+            flex: 1; 
+            max-width: 600px; 
+            z-index: 2; 
+        }
+
+        /* Columna Derecha: Logo Grande */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Estilo del Logo Gigante en el Hero */
+        .hero-logo-big {
+            width: 100%;
+            max-width: 550px; /* Tamaño máximo para que no sea excesivo */
+            height: auto;
+            /* Efecto de brillo intenso como en la simulación */
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.3));
+            animation: float 6s ease-in-out infinite; /* Flotación suave */
+        }
+
+        /* Animación suave para que el logo "respire" */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
 
         h1.hero-title {
-            font-size: 4.5rem;
+            font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 25px;
             /* Degradado metálico en el texto */
@@ -182,27 +212,6 @@
             box-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
         }
 
-        /* Elemento visual a la derecha (Logo grande decorativo) */
-        .hero-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute; /* Posicionamiento absoluto */
-            right: -100px; /* Ajustar posición horizontal */
-            top: 50%; /* Centrar verticalmente */
-            transform: translateY(-50%); /* Corregir centrado vertical */
-            z-index: 1; /* Detrás del contenido */
-        }
-        /* Versión gigante del logo para el hero */
-        .hero-logo-big {
-            width: 800px; /* Tamaño grande */
-            height: auto;
-            opacity: 0.6; /* Ligeramente transparente */
-            transform: rotate(15deg); /* Rotación decorativa */
-        }
-
-
         /* --- SECTIONS --- */
         .section-header { margin-bottom: 70px; }
         .section-label {
@@ -225,7 +234,6 @@
         }
 
         .team-card {
-            /* Fondo de cristal oscuro */
             background: var(--bg-surface);
             border: 1px solid rgba(255,255,255,0.08);
             padding: 50px 40px;
@@ -280,11 +288,12 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            h1.hero-title { font-size: 3.2rem; }
+            .hero { flex-direction: column; text-align: center; padding-top: 140px; gap: 40px; }
+            h1.hero-title { font-size: 3rem; }
+            .hero-visual { width: 100%; max-width: 300px; margin: 0 auto; order: -1; /* Pone el logo arriba en móvil si prefieres */ }
             nav ul { display: none; }
             section { padding: 80px 5%; }
             .logo-container { font-size: 1.2rem; }
-            .hero-visual { display: none; /* Ocultar el gráfico grande en móvil para espacio */ }
         }
     </style>
 </head>
@@ -306,6 +315,7 @@
     </header>
 
     <section class="hero">
+        
         <div class="hero-content">
             <h1 class="hero-title" data-lang="es">
                 ESTRATEGIA.<br>ESTRUCTURA.<br>ASCENSIÓN.
@@ -326,8 +336,9 @@
         </div>
         
         <div class="hero-visual">
-             <img src="logo.png" alt="DELPHI Logo Big" class="hero-logo-big">
+             <img src="logo.png" alt="DELPHI Emblem" class="hero-logo-big">
         </div>
+
     </section>
 
     <section id="team">
@@ -364,6 +375,9 @@
             <div class="team-card">
                 <h3 data-lang="es">Arquitectura Financiera</h3>
                 <h3 data-lang="en">Financial Architecture</h3>
+                <p data-lang="es">
+                    Liderado por un Ingeniero Industrial experto en Finanzas. Transformamos datos en claridad, optimizando tesorería, modelando flujos de caja y analizando la viabilidad profunda del negocio.
+                </p>
                 <p data-lang="en">
                     Led by an Industrial Engineer expert in Finance. We transform data into clarity, optimizing treasury, modeling cash flows, and analyzing deep business viability.
                 </p>
