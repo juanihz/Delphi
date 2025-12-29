@@ -36,7 +36,7 @@
             overflow-x: hidden;
             
             /* --- FONDO DE IMAGEN REAL --- */
-            /* Usamos la imagen generada para la textura compleja */
+            /* Asegúrate de que 'bg-nodes.jpg' esté en la carpeta */
             background-image: url('bg-nodes.jpg');
             background-size: cover;
             background-position: center;
@@ -144,13 +144,15 @@
             z-index: 1;
         }
 
-        /* Logo Gigante con Efecto Luz Intenso */
+        /* Logo Gigante con Efecto Luz Intenso (TAMAÑO AUMENTADO) */
         .hero-logo-big {
             width: 100%;
-            max-width: 580px;
+            /* AUMENTADO de 580px a 800px para llenar más espacio */
+            max-width: 800px; 
             height: auto;
             mix-blend-mode: screen; 
             /* Brillo intenso dual (cian y naranja) */
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.4)) drop-shadow(0 0 50px rgba(255, 140, 0, 0.2)); 
             animation: float 8s ease-in-out infinite;
         }
 
@@ -166,7 +168,7 @@
             margin-bottom: 30px;
             background: linear-gradient(135deg, #ffffff 30%, #a0a0b0 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent;            
         }
 
         .hero-subtitle {
@@ -177,7 +179,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- BOTÓN ESTILO CONTORNO BRILLANTE (CORREGIDO) --- */
+        /* --- BOTÓN ESTILO CONTORNO BRILLANTE --- */
         .glow-button {
             display: inline-block;
             padding: 16px 36px;
@@ -286,7 +288,8 @@
         @media (max-width: 900px) {
             .hero { flex-direction: column; text-align: center; justify-content: center; gap: 50px; padding-top: 120px; }
             h1.hero-title { font-size: 3.2rem; }
-            .hero-visual { width: 100%; max-width: 350px; margin: 0 auto; order: -1; }
+            /* En móvil el logo gigante también se ajusta, pero sigue siendo prominente */
+            .hero-visual { width: 100%; max-width: 450px; margin: 0 auto; order: -1; }
             nav ul { display: none; }
             section { padding: 80px 6%; }
             header { padding: 20px 5%; }
