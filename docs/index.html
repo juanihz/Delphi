@@ -14,7 +14,7 @@
         /* --- VARIABLES & ESTÉTICA PREMIUM --- */
         :root {
             --bg-main: #030308;
-            --bg-surface: rgba(15, 20, 30, 0.7); /* Tarjetas más oscuras para contraste */
+            --bg-surface: rgba(15, 20, 30, 0.7); 
             --text-primary: #ffffff;
             --text-secondary: #b0b0c0;
             
@@ -35,15 +35,14 @@
             line-height: 1.6;
             overflow-x: hidden;
             
-            /* --- FONDO DE IMAGEN REAL --- */
-            /* Asegúrate de que 'bg-nodes.jpg' esté en la carpeta */
+            /* --- FONDO AJUSTADO (Más visible) --- */
             background-image: url('bg-nodes.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Capa oscura encima para que el texto sea legible */
+            /* CAMBIO: Reducida la opacidad de la capa negra (0.5 en vez de 0.7) para que el fondo brille más */
             background-blend-mode: overlay;
-            background-color: rgba(3, 3, 8, 0.7); 
+            background-color: rgba(3, 3, 8, 0.5); 
         }
 
         h1, h2, h3, h4 {
@@ -60,11 +59,10 @@
         /* --- UTILIDADES --- */
         body.lang-es [data-lang="en"] { display: none !important; }
         body.lang-en [data-lang="es"] { display: none !important; }
-        /* Truco para eliminar fondo negro de imágenes y hacerlas brillar */
         .blend-screen { mix-blend-mode: screen; }
 
 
-        /* --- HEADER TOTALMENTE TRANSPARENTE --- */
+        /* --- HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -144,15 +142,14 @@
             z-index: 1;
         }
 
-        /* Logo Gigante con Efecto Luz Intenso (TAMAÑO AUMENTADO) */
+        /* CAMBIO: Logo Gigante con brillo controlado */
         .hero-logo-big {
             width: 100%;
-            /* AUMENTADO de 580px a 800px para llenar más espacio */
             max-width: 800px; 
             height: auto;
             mix-blend-mode: screen; 
-            /* Brillo intenso dual (cian y naranja) */
-            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.4)) drop-shadow(0 0 50px rgba(255, 140, 0, 0.2)); 
+            /* AJUSTE DE BRILLO: Reducida la intensidad y extensión de las sombras */
+            filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.3)) drop-shadow(0 0 25px rgba(255, 140, 0, 0.15)); 
             animation: float 8s ease-in-out infinite;
         }
 
@@ -169,8 +166,6 @@
             background: linear-gradient(135deg, #ffffff 30%, #a0a0b0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Sombra sutil para despegar del fondo complejo */
-            text-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
 
         .hero-subtitle {
@@ -185,9 +180,7 @@
         .glow-button {
             display: inline-block;
             padding: 16px 36px;
-            /* Fondo transparente */
             background: transparent;
-            /* Borde fino cian */
             border: 1px solid var(--accent-cyan);
             color: var(--text-primary);
             font-family: var(--font-title);
@@ -196,13 +189,11 @@
             letter-spacing: 2px;
             font-size: 0.85rem;
             transition: 0.4s;
-            /* Resplandor dual sutil en estado normal */
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.1);
             text-shadow: 0 0 5px rgba(255,255,255,0.3);
         }
 
         .glow-button:hover {
-            /* Relleno sutil y resplandor intenso al pasar el mouse */
             background: rgba(0, 229, 255, 0.1);
             box-shadow: 0 0 40px rgba(0, 229, 255, 0.6), 0 0 20px rgba(255, 140, 0, 0.4);
             text-shadow: 0 0 10px rgba(255,255,255,0.8);
@@ -235,7 +226,7 @@
             border: 1px solid rgba(255,255,255,0.08);
             padding: 50px 40px;
             transition: 0.4s;
-            backdrop-filter: blur(20px); /* Efecto cristal fuerte */
+            backdrop-filter: blur(20px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
@@ -290,7 +281,6 @@
         @media (max-width: 900px) {
             .hero { flex-direction: column; text-align: center; justify-content: center; gap: 50px; padding-top: 120px; }
             h1.hero-title { font-size: 3.2rem; }
-            /* En móvil el logo gigante también se ajusta, pero sigue siendo prominente */
             .hero-visual { width: 100%; max-width: 450px; margin: 0 auto; order: -1; }
             nav ul { display: none; }
             section { padding: 80px 6%; }
