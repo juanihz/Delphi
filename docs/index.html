@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- VARIABLES & ESTÉTICA PREMIUM --- */
@@ -20,6 +20,7 @@
             
             --accent-cyan: #00E5FF; 
             --accent-orange: #FF8C00;
+            --accent-green: #00FF9D; /* Nuevo color para rendimientos positivos */
             
             --font-title: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -35,14 +36,13 @@
             line-height: 1.6;
             overflow-x: hidden;
             
-            /* --- FONDO AJUSTADO (Más visible) --- */
-            background-image: url('bg-nodes.jpg');
+            /* --- FONDO AJUSTADO --- */
+            background-image: url('bg-nodes.jpg'); /* Asegurate que esta imagen exista o el fondo será negro */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* CAMBIO: Reducida la opacidad de la capa negra (0.5 en vez de 0.7) para que el fondo brille más */
             background-blend-mode: overlay;
-            background-color: rgba(3, 3, 8, 0.5); 
+            background-color: rgba(3, 3, 8, 0.85); /* Un poco más oscuro para resaltar los datos */
         }
 
         h1, h2, h3, h4 {
@@ -71,8 +71,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
-            border: none;
+            background: rgba(3, 3, 8, 0.9); /* Fondo sólido sutil para legibilidad al scrollear */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             z-index: 1000;
         }
 
@@ -99,7 +100,7 @@
             color: var(--text-primary); 
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            opacity: 0.9;
+            opacity: 0.7;
         }
         nav a:hover { opacity: 1; color: var(--accent-cyan); }
 
@@ -123,7 +124,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 0;
+            padding-top: 80px;
             gap: 60px;
         }
 
@@ -142,13 +143,11 @@
             z-index: 1;
         }
 
-        /* CAMBIO: Logo Gigante con brillo controlado */
         .hero-logo-big {
             width: 100%;
             max-width: 800px; 
             height: auto;
             mix-blend-mode: screen; 
-            /* AJUSTE DE BRILLO: Reducida la intensidad y extensión de las sombras */
             filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.3)) drop-shadow(0 0 25px rgba(255, 140, 0, 0.15)); 
             animation: float 8s ease-in-out infinite;
         }
@@ -176,7 +175,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- BOTÓN ESTILO CONTORNO BRILLANTE --- */
         .glow-button {
             display: inline-block;
             padding: 16px 36px;
@@ -239,6 +237,102 @@
         .team-card h3 { margin-bottom: 20px; font-size: 1.4rem; }
         .team-card p { color: var(--text-secondary); font-size: 1rem; }
 
+        /* --- IMPACT SECTION (NUEVA) --- */
+        #impact {
+            background: linear-gradient(180deg, rgba(3,3,8,0) 0%, rgba(0, 229, 255, 0.03) 50%, rgba(3,3,8,0) 100%);
+        }
+
+        .case-study-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .impact-card {
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 50px;
+            border-left: 4px solid var(--accent-cyan);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .impact-meta {
+            font-family: var(--font-title);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .impact-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 2px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .impact-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .metric-item { text-align: left; }
+        
+        .metric-value {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        
+        .metric-value.usd { color: var(--accent-green); text-shadow: 0 0 20px rgba(0, 255, 157, 0.3); }
+        .metric-value.ars { color: var(--accent-cyan); text-shadow: 0 0 20px rgba(0, 229, 255, 0.3); }
+
+        .metric-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .impact-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .legal-disclaimer {
+            margin-top: 40px;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.3);
+            text-align: justify;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+        }
+
         /* --- SERVICES GRID --- */
         .services-grid {
             display: grid;
@@ -285,6 +379,7 @@
             nav ul { display: none; }
             section { padding: 80px 6%; }
             header { padding: 20px 5%; }
+            .metric-value { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -292,12 +387,13 @@
 
     <header>
         <div class="logo-container">
-            <img src="logo-final1.png" alt="DELPHI Logo" class="logo-img blend-screen">
+            <img src="logo-final1.png" alt="DELPHI Logo" class="logo-img blend-screen" onerror="this.style.display='none'">
             DELPHI
         </div>
         <nav>
             <ul>
-                <li><a href="#team" data-lang="es">Equipo</a><a href="#team" data-lang="en">Team</a></li>
+                <li><a href="#team" data-lang="es">ADN</a><a href="#team" data-lang="en">DNA</a></li>
+                <li><a href="#impact" data-lang="es">Impacto</a><a href="#impact" data-lang="en">Impact</a></li>
                 <li><a href="#services" data-lang="es">Capacidades</a><a href="#services" data-lang="en">Capabilities</a></li>
                 <li><a href="#contact" data-lang="es">Contacto</a><a href="#contact" data-lang="en">Contact</a></li>
             </ul>
@@ -322,12 +418,12 @@
                 Engineering growth from chaos.
             </p>
             
-            <a href="#contact" class="glow-button" data-lang="es">NUESTRO ENFOQUE</a>
-            <a href="#contact" class="glow-button" data-lang="en">OUR APPROACH</a>
+            <a href="#impact" class="glow-button" data-lang="es">VER RESULTADOS</a>
+            <a href="#impact" class="glow-button" data-lang="en">SEE RESULTS</a>
         </div>
         
         <div class="hero-visual">
-             <img src="logo-final1.png" alt="DELPHI Emblem" class="hero-logo-big">
+             <img src="logo-final1.png" alt="DELPHI Emblem" class="hero-logo-big" onerror="this.style.display='none'">
         </div>
 
     </section>
@@ -342,8 +438,8 @@
 
         <div class="team-grid">
             <div class="team-card">
-                <h3 data-lang="es">Rigor Legal & Financiero</h3>
-                <h3 data-lang="en">Legal & Financial Rigor</h3>
+                <h3 data-lang="es">Blindaje Patrimonial</h3>
+                <h3 data-lang="en">Legal & Financial Shield</h3>
                 <p data-lang="es">
                     Aportamos el blindaje contractual, la estructuración de vehículos de inversión y la seguridad jurídica necesaria para operaciones complejas.
                 </p>
@@ -376,6 +472,67 @@
         </div>
     </section>
 
+    <section id="impact">
+        <div class="section-header">
+            <span class="section-label" data-lang="es">EVIDENCIA EMPÍRICA</span>
+            <span class="section-label" data-lang="en">EMPIRICAL EVIDENCE</span>
+            <h2 class="section-heading" data-lang="es">Impacto Real</h2>
+            <h2 class="section-heading" data-lang="en">Real Impact</h2>
+        </div>
+
+        <div class="case-study-container">
+            <div class="impact-card">
+                <div class="impact-meta">
+                    <span class="impact-badge">INSTITUCIONAL</span>
+                    <span>2020 - 2024</span>
+                </div>
+                
+                <h3 class="impact-title" data-lang="es">
+                    De Tesorería Tradicional a Fondo Patrimonial Anticíclico
+                </h3>
+                <h3 class="impact-title" data-lang="en">
+                    From Traditional Treasury to Anti-Cyclical Endowment Fund
+                </h3>
+
+                <p class="impact-desc" data-lang="es">
+                    <strong>El Desafío:</strong> Entidad con flujos atrapados en Money Market (Riesgo 0, Retorno Real Negativo).<br>
+                    <strong>La Solución:</strong> Arbitraje de liquidez y calce de plazos (Asset-Liability Matching) para financiar operaciones y liberar capital estructural.
+                </p>
+                <p class="impact-desc" data-lang="en">
+                    <strong>Challenge:</strong> Entity stuck in Money Market funds (Zero Risk, Negative Real Return).<br>
+                    <strong>Solution:</strong> Liquidity arbitrage and Asset-Liability Matching to fund operations while unlocking structural capital.
+                </p>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-value usd">14.67%</div>
+                        <div class="metric-label" data-lang="es">TNA PROMEDIO (USD)</div>
+                        <div class="metric-label" data-lang="en">AVG ANNUAL RETURN (USD)</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value ars">85.27%</div>
+                        <div class="metric-label" data-lang="es">TNA PROMEDIO (ARS)</div>
+                        <div class="metric-label" data-lang="en">AVG ANNUAL RETURN (ARS)</div>
+                    </div>
+                </div>
+
+                <p class="impact-desc" data-lang="es" style="font-size: 0.9rem; opacity: 0.8;">
+                    Resultados auditados sobre cartera administrada. Superación consistente del Benchmark inflacionario y devaluatorio en contexto de crisis de mercado.
+                </p>
+                <p class="impact-desc" data-lang="en" style="font-size: 0.9rem; opacity: 0.8;">
+                    Audited results on managed portfolio. Consistent outperformance of inflation and devaluation benchmarks during market crisis context.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-disclaimer" data-lang="es">
+            AVISO LEGAL: La información presentada corresponde a resultados históricos de casos de consultoría privada y gestión de carteras administradas. Los rendimientos pasados no garantizan rendimientos futuros. Esta información tiene fines exclusivamente ilustrativos sobre las capacidades técnicas de DELPHI y no constituye una oferta pública de valores, asesoramiento de inversión personalizado, ni una invitación a suscribir cuotapartes de fondos comunes de inversión bajo regulación de la CNV, salvo en los vehículos debidamente autorizados. Las estrategias de inversión conllevan riesgos, incluyendo la posible pérdida de capital.
+        </div>
+        <div class="legal-disclaimer" data-lang="en">
+            LEGAL DISCLAIMER: The information presented corresponds to historical results of private consulting cases and managed portfolios. Past performance does not guarantee future results. This information is for illustrative purposes regarding DELPHI's technical capabilities only and does not constitute a public offering of securities, personalized investment advice, or an invitation to subscribe to mutual funds, except in duly authorized vehicles. Investment strategies involve risks, including possible loss of capital.
+        </div>
+    </section>
+
     <section id="services">
         <div class="section-header">
             <span class="section-label" data-lang="es">CAPACIDADES</span>
@@ -387,10 +544,10 @@
         <div class="services-grid">
             <div class="service-item">
                 <div class="service-icon">◈</div>
-                <h4 data-lang="es">Fondos de Inversión</h4>
-                <h4 data-lang="en">Investment Funds</h4>
-                <p data-lang="es">Estructuración profesional y gestión activa de capitales de inversión.</p>
-                <p data-lang="en">Professional structuring and active management of investment funds.</p>
+                <h4 data-lang="es">Asset Allocation</h4>
+                <h4 data-lang="en">Asset Allocation</h4>
+                <p data-lang="es">Diseño de portafolios de inversión a medida con gestión activa.</p>
+                <p data-lang="en">Bespoke investment portfolio design with active management.</p>
             </div>
             
             <div class="service-item">
@@ -405,29 +562,29 @@
                 <div class="service-icon">⚡</div>
                 <h4 data-lang="es">Tesorería & Cashflow</h4>
                 <h4 data-lang="en">Treasury & Cashflow</h4>
-                <p data-lang="es">Optimización de liquidez y salud financiera operativa.</p>
-                <p data-lang="en">Liquidity optimization and operational financial health.</p>
+                <p data-lang="es">Optimización de liquidez, arbitraje de tasas y salud financiera.</p>
+                <p data-lang="en">Liquidity optimization, rate arbitrage and financial health.</p>
             </div>
             
             <div class="service-item">
                 <div class="service-icon">⚖</div>
-                <h4 data-lang="es">Contratos & Financiación</h4>
-                <h4 data-lang="en">Contracts & Financing</h4>
-                <p data-lang="es">Ingeniería legal para cerrar tratos y levantar capital.</p>
-                <p data-lang="en">Legal engineering to close deals and raise capital.</p>
+                <h4 data-lang="es">Ingeniería Legal</h4>
+                <h4 data-lang="en">Legal Engineering</h4>
+                <p data-lang="es">Estructuración de contratos y vehículos para levantar capital.</p>
+                <p data-lang="en">Structuring contracts and vehicles to raise capital.</p>
             </div>
 
             <div class="service-item">
                 <div class="service-icon">👁</div>
-                <h4 data-lang="es">Análisis de Negocios</h4>
-                <h4 data-lang="en">Business Analysis</h4>
+                <h4 data-lang="es">Business Intelligence</h4>
+                <h4 data-lang="en">Business Intelligence</h4>
                 <p data-lang="es">Diagnóstico profundo para la toma de decisiones basadas en datos.</p>
                 <p data-lang="en">Deep diagnosis for data-driven decision making.</p>
             </div>
              <div class="service-item">
                 <div class="service-icon">🧩</div>
-                <h4 data-lang="es">Resolución de Problemas</h4>
-                <h4 data-lang="en">Complex Problem Solving</h4>
+                <h4 data-lang="es">Gestión de Crisis</h4>
+                <h4 data-lang="en">Crisis Management</h4>
                 <p data-lang="es">Abordaje multidisciplinario para situaciones críticas.</p>
                 <p data-lang="en">Multidisciplinary approach for critical situations.</p>
             </div>
@@ -436,7 +593,7 @@
 
     <footer id="contact">
         <div class="logo-container" style="justify-content: center; margin-bottom: 30px; opacity: 0.8;">
-             <img src="logo-final1.png" alt="DELPHI Logo" class="logo-img blend-screen">
+             <img src="logo-final1.png" alt="DELPHI Logo" class="logo-img blend-screen" onerror="this.style.display='none'">
             DELPHI
         </div>
         <p data-lang="es" style="margin-bottom: 10px;">© 2025 DELPHI. Consultoría Estratégica. Todos los derechos reservados.</p>
