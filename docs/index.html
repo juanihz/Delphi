@@ -11,10 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES & ESTÉTICA EXACTA --- */
+        /* --- VARIABLES & ESTÉTICA --- */
         :root {
-            --bg-main: #0a0a0f; /* Negro profundo */
-            --bg-surface: rgba(20, 20, 30, 0.6); /* Superficies semitransparentes */
+            --bg-main: #050508; /* Negro aún más profundo */
+            --bg-surface: rgba(20, 20, 30, 0.4); /* Más transparencia en tarjetas */
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             
@@ -35,19 +35,44 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            /* SIMULACIÓN DE FONDO COMPLEJO CON CSS (Luces y Red) */
+            
+            /* --- FONDO AVANZADO (Simulación de Nodos y Luces) --- */
             background-image: 
-                /* Luces radiales (Cian izquierda, Naranja derecha) */
-                radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 140, 0, 0.12) 0%, transparent 50%),
-                /* Patrón sutil de líneas de red */
-                linear-gradient(0deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 100px 100px, 100px 100px;
-            background-attachment: fixed; /* Efecto parallax suave */
+                /* 1. Luz Ambiental Naranja (Arriba Derecha - como en la foto) */
+                radial-gradient(circle at 90% 10%, rgba(255, 140, 0, 0.15) 0%, transparent 40%),
+                /* 2. Luz Ambiental Cian (Centro/Izquierda) */
+                radial-gradient(circle at 20% 40%, rgba(0, 229, 255, 0.1) 0%, transparent 45%),
+                /* 3. Simulación de "Nodos/Estrellas" (Puntos pequeños blancos dispersos) */
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px),
+                /* 4. Red sutil de fondo */
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            
+            /* Posicionamiento de las capas de fondo */
+            background-size: 
+                100% 100%, 
+                100% 100%, 
+                550px 550px, 
+                350px 350px, 
+                250px 250px,
+                100px 100px, 
+                100px 100px;
+            
+            background-position: 
+                0 0, 
+                0 0, 
+                0 0, 
+                40px 60px, 
+                130px 270px,
+                0 0, 
+                0 0;
+                
+            background-attachment: fixed;
         }
 
-        /* Títulos en mayúsculas y fuertes */
+        /* Títulos */
         h1, h2, h3, h4 {
             font-family: var(--font-title);
             text-transform: uppercase;
@@ -63,20 +88,28 @@
         body.lang-es [data-lang="en"] { display: none !important; }
         body.lang-en [data-lang="es"] { display: none !important; }
 
-        /* --- HEADER & NAV --- */
+        /* --- HEADER TRANSPARENTE (Modificado) --- */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 25px 5%;
+            padding: 30px 5%; /* Un poco más de espacio */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* Fondo de cristal esmerilado */
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: blur(20px);
+            /* ELIMINADO: Fondo y borde para lograr la transparencia total */
+            background: transparent; 
+            backdrop-filter: none; 
+            border: none;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+        
+        /* Opcional: Si haces scroll, que aparezca un poco de fondo para leer mejor */
+        header.scrolled {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 5%;
         }
 
         .logo-container {
@@ -87,33 +120,38 @@
             font-weight: 800;
             font-size: 1.5rem;
             letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra para legibilidad */
         }
 
-        /* ESTILOS PARA TU NUEVA IMAGEN DE LOGO (Header y Footer) */
+        /* LOGO CON EFECTO DE FUSIÓN (Screen) */
         .logo-img {
-            width: 55px;  /* Tamaño del logo en la barra */
+            width: 55px;
             height: auto; 
             object-fit: contain;
+            /* Esto hace que el negro desaparezca y el logo brille */
+            mix-blend-mode: screen; 
         }
 
         .footer-logo-img {
-            width: 45px; /* Ligeramente más pequeño en el footer */
+            width: 45px;
             opacity: 0.8;
+            mix-blend-mode: screen;
         }
 
         nav ul { display: flex; gap: 30px; align-items: center; }
         nav a { 
-            font-size: 0.8rem; 
+            font-size: 0.85rem; 
             font-weight: 700; 
             color: var(--text-primary); 
             text-transform: uppercase;
             letter-spacing: 1px;
-            opacity: 0.8;
+            opacity: 0.9;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
-        nav a:hover { opacity: 1; color: var(--accent-cyan); }
+        nav a:hover { opacity: 1; color: var(--accent-cyan); text-shadow: 0 0 15px rgba(0, 229, 255, 0.6); }
 
         .lang-switch {
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
             padding: 8px 18px;
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -121,31 +159,31 @@
             cursor: pointer;
             transition: 0.3s;
             border-radius: 4px;
+            background: rgba(0,0,0,0.2); /* Sutil fondo para el botón */
         }
         .lang-switch:hover {
             border-color: var(--accent-cyan);
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
             color: var(--accent-cyan);
+            background: rgba(0,0,0,0.5);
         }
 
-        /* --- HERO SECTION REVISADA (Layout dividido) --- */
+        /* --- HERO SECTION --- */
         .hero {
-            min-height: 100vh; /* Ocupa toda la pantalla */
-            display: flex;     /* Usamos Flexbox para dividir izquierda/derecha */
+            min-height: 100vh;
+            display: flex;
             align-items: center;
-            justify-content: space-between; /* Separa texto y logo */
-            padding-top: 100px; /* Compensar header */
-            gap: 50px; /* Espacio entre texto y logo */
+            justify-content: space-between;
+            padding-top: 0; /* Centrado vertical total */
+            gap: 50px;
         }
 
-        /* Columna Izquierda: Texto */
         .hero-content { 
             flex: 1; 
             max-width: 600px; 
             z-index: 2; 
         }
 
-        /* Columna Derecha: Logo Grande */
         .hero-visual {
             flex: 1;
             display: flex;
@@ -155,16 +193,18 @@
             z-index: 1;
         }
 
-        /* Estilo del Logo Gigante en el Hero */
+        /* Logo Gigante con Efecto Luz */
         .hero-logo-big {
             width: 100%;
-            max-width: 550px; /* Tamaño máximo para que no sea excesivo */
+            max-width: 550px;
             height: auto;
-            /* Efecto de brillo intenso como en la simulación */
-            animation: float 6s ease-in-out infinite; /* Flotación suave */
+            /* Fusión perfecta con el fondo */
+            mix-blend-mode: screen; 
+            /* Brillo adicional CSS */
+            filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.2)); 
+            animation: float 6s ease-in-out infinite;
         }
 
-        /* Animación suave para que el logo "respire" */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -175,10 +215,11 @@
             font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 25px;
-            /* Degradado metálico en el texto */
-            background: linear-gradient(135deg, #ffffff 0%, #c0c0d0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #d0d0d0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            /* Sombra sutil para separar del fondo si hay estrellas detrás */
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
         .hero-subtitle {
@@ -188,13 +229,11 @@
             font-weight: 300;
         }
 
-        /* Botón estilo "Neón" */
         .glow-button {
             display: inline-block;
             padding: 18px 40px;
-            background: transparent;
-            /* Borde degradado simulado */
-            border: 2px solid var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.05); /* Fondo muy sutil */
+            border: 1px solid var(--accent-cyan);
             color: var(--text-primary);
             font-family: var(--font-title);
             font-weight: 700;
@@ -202,13 +241,13 @@
             letter-spacing: 2px;
             font-size: 0.9rem;
             transition: 0.4s;
-            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1), inset 0 0 10px rgba(0, 229, 255, 0.05);
         }
 
         .glow-button:hover {
-            background: rgba(0, 229, 255, 0.1);
+            background: rgba(0, 229, 255, 0.15);
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.5);
         }
 
         /* --- SECTIONS --- */
@@ -221,7 +260,7 @@
             font-size: 0.9rem;
             display: block;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            text-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
         }
         h2.section-heading { font-size: 3rem; }
 
@@ -234,7 +273,7 @@
 
         .team-card {
             background: var(--bg-surface);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.05);
             padding: 50px 40px;
             transition: 0.4s;
             backdrop-filter: blur(10px);
@@ -242,8 +281,9 @@
 
         .team-card:hover {
             border-color: var(--accent-orange);
-            box-shadow: 0 10px 30px -10px rgba(255, 140, 0, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(255, 140, 0, 0.15);
             transform: translateY(-5px);
+            background: linear-gradient(145deg, rgba(255, 140, 0, 0.05) 0%, transparent 100%);
         }
         
         .team-card h3 { margin-bottom: 20px; font-size: 1.4rem; }
@@ -258,14 +298,14 @@
 
         .service-item {
             padding: 40px 30px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
-            border-top: 3px solid rgba(255,255,255,0.1);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+            border-top: 2px solid rgba(255,255,255,0.1);
             transition: 0.3s;
         }
         .service-item:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 -15px 30px -15px rgba(0, 229, 255, 0.3);
-            background: linear-gradient(180deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
+            box-shadow: 0 -15px 30px -15px rgba(0, 229, 255, 0.2);
+            background: linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, transparent 100%);
         }
         .service-icon {
             color: var(--accent-cyan);
@@ -277,28 +317,30 @@
 
         /* --- FOOTER --- */
         footer {
-            background: rgba(5, 5, 10, 0.8);
+            background: rgba(0, 0, 0, 0.6);
             padding: 80px 10%;
             text-align: center;
             font-size: 0.9rem;
             color: var(--text-secondary);
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 140px; gap: 40px; }
+            .hero { flex-direction: column; text-align: center; justify-content: center; gap: 40px; padding-top: 100px; }
             h1.hero-title { font-size: 3rem; }
-            .hero-visual { width: 100%; max-width: 300px; margin: 0 auto; order: -1; /* Pone el logo arriba en móvil si prefieres */ }
-            nav ul { display: none; }
+            .hero-visual { width: 100%; max-width: 300px; margin: 0 auto; order: -1; }
+            nav ul { display: none; } /* En móvil ocultamos menú texto */
             section { padding: 80px 5%; }
             .logo-container { font-size: 1.2rem; }
+            header { padding: 20px 5%; }
         }
     </style>
 </head>
 <body class="lang-es">
 
-    <header>
+    <header id="main-header">
         <div class="logo-container">
             <img src="logo-final1.png" alt="DELPHI Logo" class="logo-img">
             DELPHI
@@ -367,7 +409,7 @@
                     Diseñamos la maquinaria comercial y los procesos para asegurar que la estrategia se traduzca en ejecución y revenue.
                 </p>
                 <p data-lang="en">
-                    LWe design the commercial machinery and processes to ensure strategy translates into execution and revenue.
+                    We design the commercial machinery and processes to ensure strategy translates into execution and revenue.
                 </p>
             </div>
 
@@ -463,6 +505,16 @@
                 body.classList.add('lang-es');
             }
         }
+        
+        // Script opcional para dar fondo al header al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
